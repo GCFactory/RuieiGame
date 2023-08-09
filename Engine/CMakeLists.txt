@@ -14,13 +14,16 @@ else()
 endif(WIN32)
 
 set(SFML_STATIC_LIBRARIES TRUE)
-#set(SFML_DIR "${LIB_DIR}/SFML-2.6.0/lib/cmake/SFML/")
-
+set(SFML_DIR "${LIB_DIR}/SFML-2.6.0/lib/cmake/SFML/")
+if(WIN32)
+find_package(SFML 2.6 COMPONENTS graphics window system audio network REQUIRED)
+else()
 include(FetchContent)
 FetchContent_Declare(SFML
         GIT_REPOSITORY https://github.com/SFML/SFML.git
         GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
+endif(WIN32)
 
 add_executable (Engine ${SOURCE_FILES})
 
