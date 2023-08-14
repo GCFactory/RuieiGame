@@ -1,7 +1,6 @@
 //
 // Created by Alex on 8/14/2023.
 //
-#pragma once
 
 #ifndef RUEIEGAME_ENGINE_H
 #define RUEIEGAME_ENGINE_H
@@ -13,9 +12,11 @@
 
 class Engine {
 protected:
-    std::vector<GameObject*>  GameObjectList;
+    std::vector<GameObject *> GameObjectList;
 public:
-    GameObject* CreateObject(uint64_t Id);
+    void Initilaze();
+
     void UpdateState();
 };
+
 #endif //RUEIEGAME_ENGINE_H

@@ -1,17 +1,12 @@
-﻿// Game.cpp : Defines the entry point for the application.
-//
-#define ENGINE_DEBUG 1
+﻿#include <SFML/Graphics.hpp>
 
-#include <SFML/Graphics.hpp>
+#define DEBUG
 
-#include "GameObject.h"
 #include "Engine.h"
-#include "TextureManager.h"
-#include "TextureList.h"
-
 int main()
 {
-    //sf::VideoMode DesktopScreen=sf::VideoMode::getDesktopMode();//получили параметры экрана
+    //получили параметры экрана
+    //sf::VideoMode DesktopScreen=sf::VideoMode::getDesktopMode();
     sf::VideoMode DesktopScreen = sf::VideoMode(720, 360, 32);
     auto sfScreenMode = sf::Style::Default;
     sf::RenderWindow MainWindow(sf::VideoMode(DesktopScreen.width,DesktopScreen.height,DesktopScreen.bitsPerPixel),"Game",sfScreenMode);
@@ -21,12 +16,12 @@ int main()
 
     Engine engine;
 
-    uint64_t textureId = 1;
-//    auto error = TextureManager::LoadTextureFromFile(textureId, "Resources/Textures/attack_portals.png");
-    auto error = TextureManager::LoadTextureFromFile(TEXTURE_ATTACK_PORTAL);
-    std::cout << "Texture loaded with exit code: " << error << std::endl;
-
-    engine.CreateObject(1);
+    try {
+        engine.Initilaze();
+    } catch (std::exception e) {
+        std::cout << "[ERROR]" << e.what() << std::endl;
+        exit(1);
+    }
 
 
     sf::CircleShape shape(100.f);

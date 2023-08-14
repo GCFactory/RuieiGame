@@ -21,6 +21,10 @@ public:
     void SetPosition(float _x, float _y);
     void SetPositionX(float newCoord);
     void SetPositionY(float newCoord);
+
+
+    virtual void Initilaze() = 0;
+    virtual void Update() = 0;
 private:
 };
 

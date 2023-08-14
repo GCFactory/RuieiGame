@@ -13,6 +13,7 @@ project ("RueieGame")
 
 # Include sub-projects.
 add_subdirectory ("Engine")
+add_subdirectory ("Tests")
 add_subdirectory ("HelloWorld")
 
 if(MSVC)

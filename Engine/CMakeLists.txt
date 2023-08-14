@@ -43,12 +43,14 @@ if (CMAKE_VERSION VERSION_GREATER 3.12)
     set_property(TARGET Engine PROPERTY CXX_STANDARD 20)
 endif()
 
+
 # Link library
 target_link_libraries(Engine sfml-window sfml-system sfml-graphics sfml-audio)
 # Link headers
 target_include_directories(Engine
     PRIVATE
     "${PROJECT_BINARY_DIR}"
+    "${CMAKE_CURRENT_SOURCE_DIR}"
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
 # Post-build Resources dir
