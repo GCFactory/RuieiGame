@@ -1,12 +1,13 @@
 ﻿// Game.cpp : Defines the entry point for the application.
 //
-#define ENGINE_DEBUG
+#define ENGINE_DEBUG 1
 
 #include <SFML/Graphics.hpp>
 
 #include "GameObject.h"
 #include "Engine.h"
 #include "TextureManager.h"
+#include "TextureList.h"
 
 int main()
 {
@@ -19,21 +20,17 @@ int main()
 
 
     Engine engine;
-    TextureManager textureManager;
 
-    auto error = textureManager.LoadTextureFromFile("Resources/Textures/attack_portals.png");
+    uint64_t textureId = 1;
+//    auto error = TextureManager::LoadTextureFromFile(textureId, "Resources/Textures/attack_portals.png");
+    auto error = TextureManager::LoadTextureFromFile(TEXTURE_ATTACK_PORTAL);
     std::cout << "Texture loaded with exit code: " << error << std::endl;
 
-    GameObject *A =  engine.CreateObject(2);
-
-
+    engine.CreateObject(1);
 
 
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
-
-
-    A->SetPosition(12.34, 113.f);
 
     while (MainWindow.isOpen())
     {

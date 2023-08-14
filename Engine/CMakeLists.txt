@@ -8,10 +8,11 @@ file(GLOB HEADER_FILES
         "*.h"
 )
 # Add source to this project's executable.
-set (SOURCE_FILES "Engine.cpp"
+set (SOURCE_FILES "main.cpp"
         src/EngineBase.cpp
         src/GameObject.cpp
         src/TextureManager.cpp
+        src/Engine.cpp
 )
 
 # Autoload library dir on different OS

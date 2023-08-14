@@ -6,13 +6,14 @@
 #define RUEIEGAME_TEXTUREMANAGER_H
 
 #include "Errors.h"
+#include "EngineBase.h"
 #include "SFML/Graphics.hpp"
 
 class TextureManager {
 protected:
-    std::vector<sf::Texture*> TextureList;
+    static inline std::map<uint64_t, sf::Texture *> TextureList = std::map<uint64_t, sf::Texture *>();
 public:
-    static int LoadTextureFromFile(std::string Path);
+    static int LoadTextureFromFile(uint64_t Key, const std::string& Path);
 };
 
 #endif //RUEIEGAME_TEXTUREMANAGER_H
