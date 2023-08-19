@@ -60,3 +60,11 @@ void Logger::setLogLevel(LogLevel level) {
 LogLevel Logger::getLogLevel() const {
     return m_logLevel;
 }
+
+void Logger::setStream(std::ostream *stream) {
+    m_targetStream = stream;
+}
+
+std::ostream *Logger::getStream() const {
+    return m_targetStream;
+}

@@ -11,6 +11,7 @@ file(GLOB ENGINE_SOURCE_FILES
 
 set (SOURCE_FILES "main.cpp"
         TestTextureManager.cpp
+        TestLogger.cpp
 )
 
 if(WIN32)

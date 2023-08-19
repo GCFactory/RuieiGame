@@ -23,6 +23,9 @@ public:
     void setLogLevel(LogLevel level);
     LogLevel getLogLevel() const;
 
+    void setStream(std::ostream *stream);
+    std::ostream * getStream() const;
+
 private:
     std::ostream *m_targetStream;
     LogLevel m_logLevel;

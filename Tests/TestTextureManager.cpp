@@ -3,6 +3,7 @@
 //
 #include "gtest/gtest.h"
 
+#include "../Engine/include/Enums/ErrorID.h"
 #include "../Engine/include/TextureManager.h"
 
 

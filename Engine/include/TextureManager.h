@@ -9,9 +9,13 @@
 #include "SFML/Graphics.hpp"
 
 class TextureManager final {
-protected:
-    static inline std::map<uint64_t, sf::Texture *> TextureList = std::map<uint64_t, sf::Texture *>();
+private:
+    static TextureManager *m_Instance;
+    TextureManager();
+    ~TextureManager();
 public:
+    static TextureManager* GetInstance();
+    static inline std::map<uint64_t, sf::Texture *> m_TextureList = std::map<uint64_t, sf::Texture *>();
     static int LoadTextureFromFile(uint64_t Key, const std::string& Path);
 };
 
