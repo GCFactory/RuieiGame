@@ -1,16 +1,25 @@
 //
 // Created by Alex on 8/13/2023.
 //
-#include "TextureManager.h"
-
 #include "SFML/Graphics/Texture.hpp"
 
-int TextureManager::LoadTextureFromFile(std::string Path){
-    sf::Texture t;
-    t.setSmooth(true);
-    if(!t.loadFromFile(Path)) {
-        return ERROR_TEXTURE_NOT_LOADED;
+#include "Global.h"
+#include "Enums/ErrorID.h"
+#include "Logger.h"
+#include "TextureManager.h"
+
+int TextureManager::LoadTextureFromFile(uint64_t Key, const std::string& Path) {
+    auto *t = new sf::Texture();
+    t->setSmooth(true);
+    if (TextureManager::TextureList.contains(Key)) {
+        return ERROR_TEXTURE_ALREADY_DECLARED;
     } else {
-        return 0;
+        if (!t->loadFromFile(Path)) {
+        return ERROR_TEXTURE_NOT_LOADED;
+        } else {
+            TextureManager::TextureList.insert_or_assign(Key, t);
+            g_Logger->log(LogLevel::Debug, "TextureManager", std::format("New texture loaded with id={}", Key));
+            return 0;
+        }
     }
 }

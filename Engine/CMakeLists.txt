@@ -3,15 +3,19 @@
 #
 
 # Auto add headers to executable
-file(GLOB HEADER_FILES
-        "include/*.h"
-        "*.h"
+file(GLOB  HEADER_FILE
+    "include/Enum/*.h"
+    "include/Global/*.h"
+    "*.h"
 )
 # Add source to this project's executable.
-set (SOURCE_FILES "Engine.cpp"
-        src/EngineBase.cpp
-        src/GameObject.cpp
-        src/TextureManager.cpp
+set(SOURCE_FILES
+    "src/Logger.cpp"
+    "src/Engine.cpp"
+    "src/EngineBase.cpp"
+    "src/TextureManager.cpp"
+    "src/GameObject.cpp"
+    "main.cpp"
 )
 
 # Autoload library dir on different OS
@@ -38,9 +42,10 @@ endif(WIN32)
 
 
 add_executable (Engine ${SOURCE_FILES} ${HEADER_FILES})
-if (CMAKE_VERSION VERSION_GREATER 3.12)
+if (CMAKE_VERSION VERSION_GREATER 3.8)
     set_property(TARGET Engine PROPERTY CXX_STANDARD 20)
 endif()
+
 
 # Link library
 target_link_libraries(Engine sfml-window sfml-system sfml-graphics sfml-audio)
@@ -48,6 +53,7 @@ target_link_libraries(Engine sfml-window sfml-system sfml-graphics sfml-audio)
 target_include_directories(Engine
     PRIVATE
     "${PROJECT_BINARY_DIR}"
+    "${CMAKE_CURRENT_SOURCE_DIR}"
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
 # Post-build Resources dir

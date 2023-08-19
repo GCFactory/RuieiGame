@@ -17,6 +17,7 @@ CMake
 *.userprefs
 *cmake-build-debug/
 *cmake-build-release/
+cmake-build-*/
 # Mono auto generated files
 mono_crash.*
 
