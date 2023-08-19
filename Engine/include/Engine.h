@@ -5,18 +5,22 @@
 #ifndef RUEIEGAME_ENGINE_H
 #define RUEIEGAME_ENGINE_H
 
-#include <iostream>
-#include <vector>
+#pragma once
 
+#include "Global.h"
 #include "GameObject.h"
 
-class Engine {
+
+class Engine final{
 protected:
     std::vector<GameObject *> GameObjectList;
 public:
+    Engine();
     void Initilaze();
 
     void UpdateState();
+
+    void HandleWindowEvent(RenderWindow *window, Event event);
 };
 
 #endif //RUEIEGAME_ENGINE_H

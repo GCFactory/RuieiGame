@@ -5,11 +5,10 @@
 #ifndef RUEIEGAME_TEXTUREMANAGER_H
 #define RUEIEGAME_TEXTUREMANAGER_H
 
-#include "Errors.h"
 #include "EngineBase.h"
 #include "SFML/Graphics.hpp"
 
-class TextureManager {
+class TextureManager final {
 protected:
     static inline std::map<uint64_t, sf::Texture *> TextureList = std::map<uint64_t, sf::Texture *>();
 public:

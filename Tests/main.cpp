@@ -12,6 +12,8 @@ ASSERT_TRUE(1 == 1);
 //cout << "continue test after failure" << endl;
 //}
 
+
+// Don't touch
 int main(int argc, char **argv)
 {
     ::testing::InitGoogleTest(&argc, argv);

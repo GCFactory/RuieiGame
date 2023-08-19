@@ -1,10 +1,31 @@
-﻿#include <SFML/Graphics.hpp>
+﻿#include "Global.h"
+#include "Logger.h"
+#include "Engine.h"
+
+
+#ifdef _WIN32
+#include <windows.h>
+#elif __linux__
+#include "Platform/CendricLinux.h"
+#endif
 
 #define DEBUG
+#define LOG_LEVEL LogLevel::Verbose
 
-#include "Engine.h"
 int main()
 {
+#ifndef DEBUG
+    #ifdef _WIN32
+		HWND hWnd = GetConsoleWindow();
+		ShowWindow(hWnd, SW_HIDE);
+	#endif
+#endif
+    g_Logger = new Logger();
+#ifdef LOG_LEVEL
+    g_Logger->setLogLevel(LOG_LEVEL);
+#endif
+    g_Engine = new Engine();
+
     //получили параметры экрана
     //sf::VideoMode DesktopScreen=sf::VideoMode::getDesktopMode();
     sf::VideoMode DesktopScreen = sf::VideoMode(720, 360, 32);
@@ -13,13 +34,10 @@ int main()
 
     MainWindow.setFramerateLimit(60);//установили частоту обновления экрана=60FPS
 
-
-    Engine engine;
-
     try {
-        engine.Initilaze();
-    } catch (std::exception e) {
-        std::cout << "[ERROR]" << e.what() << std::endl;
+        g_Engine->Initilaze() ;
+    } catch (const std::runtime_error& e) {
+        g_Logger->logError("Exception", e.what());
         exit(1);
     }
 
@@ -29,17 +47,19 @@ int main()
 
     while (MainWindow.isOpen())
     {
-        sf::Event event;
+        sf::Event event{};
         while (MainWindow.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
-                MainWindow.close();
+            g_Engine->HandleWindowEvent(&MainWindow, event);
         }
 
         MainWindow.clear();
         MainWindow.draw(shape);
         MainWindow.display();
     }
+
+    delete g_Engine;
+    delete g_Logger;
 
     return 0;
 }
